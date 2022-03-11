@@ -7,7 +7,7 @@ public class MainComparator {
     public static void main(String[] args) {
         // Creamos unos cuantos objetos
         Socio s1 = new Socio(15, "Bettina", LocalDate.of(2000, 1,1));
-        Socio s2 = new Socio(9, "Aladina", LocalDate.of(1968, 10,10));
+        Socio s2 = new Socio(9000, "Aladina", LocalDate.of(1968, 10,10));
         Socio s3 = new Socio(23, "Caleb", LocalDate.of(2012, 12,13));
         Socio s4 = new Socio(666, "Lucifer", LocalDate.of(1666, 12,25));
         Socio s5 = new Socio(0, "Adán", LocalDate.of(1000, 5,10));
@@ -32,7 +32,16 @@ public class MainComparator {
         System.out.println("\nMOSTRAMOS EL ARRAYLIST ORDENADO POR NOMBRE");
         imprimirArrayList(socios);
 
-        // ordenar por fecha de nacimiento
+        // ahora ordenamos por id
+        // ya tenemos la clase hecha, ahora creamos un objeto
+        ComparaId cId = new ComparaId();
+        // y ahora se lo pasamos al método sort
+        socios.sort(cId);
+        // y ahora imprimimos
+        System.out.println("\nMOSTRAMOS EL ARRAYLIST ORDENADO POR ID");
+        imprimirArrayList(socios);
+
+        // ordenar por fecha de nacimiento (lo dejamos pendiente)
     }
 
     private static void imprimirArrayList(ArrayList<Socio> socios) {
