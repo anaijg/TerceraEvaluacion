@@ -2,7 +2,12 @@ package ejercicios.ejercicio4;
 
 public class MainMetodosP {
     public static void main(String[] args) {
-        System.out.println(esMúltiploDe5(15));
+        System.out.println("1. " + esMúltiploDe5(15));
+
+        System.out.println("2." + noTerminaEns("Xokas"));
+        System.out.println("3. " +noTerminaEns( "Ibai"));
+
+        System.out.println("4. " + parYMultiploDe3(6));
 
 
     }
@@ -19,9 +24,15 @@ public class MainMetodosP {
     }
 
    // Escribe un método para comprobar si un String no termina en “s”.
+    static boolean noTerminaEns(String s) {
+        return !s.endsWith("s");
+    }
 
    // Escribe un método para comprobar si un
     //entero es par y múltiplo de 3.
+    static boolean parYMultiploDe3(int n) {
+        return n % 2 == 0 && n % 3 == 0;
+    }
 
     // Escribe un método para comprobar si un
     //carácter es una letra y está en mayúscula.
