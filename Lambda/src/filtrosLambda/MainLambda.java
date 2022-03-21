@@ -1,15 +1,13 @@
 package filtrosLambda;
 
-import comparadoresLambda.Persona;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class MainLambda {
     public static void main(String[] args) {
-        List<comparadoresLambda.Persona> personas = new ArrayList<>();
+        List<Persona> personas = new ArrayList<>();
         personas.add(new Persona("Zacarias", "Zapatero", 33));
         personas.add(new Persona("Yeison", "Zapatero", 33));
         personas.add(new Persona("Yeison", "Ybarra", 25));
@@ -26,10 +24,31 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nombre para filtrar: ");
         String nombre = sc.nextLine();
-        List<Persona> resultado = buscarPorNombre(nombre, personas);
+
+        //FiltroPersonaNombre filtroPersonaNombre = new FiltroPersonaNombre(nombre);
+        //  si quiero filtrar por apellido, crearía la clase correspondiente y la instancio aquí
+        // y los mismo para filtrar por edad
+        //List<Persona> resultado = buscarPorFiltro(filtroPersonaNombre, personas);
+        //imprimir(resultado);
+
+        /*FiltroPersona filtroPersona = new FiltroPersona() {
+            @Override
+            public boolean test(Persona p) {
+                return p.getNombre().equals(nombre); // me cepillo la clase intermedia
+            }
+        };*/
+
+        System.out.println("\n\nFiltramos por nombre: ");
+        FiltroPersona filtroPersona1 = p -> p.getNombre().equals(nombre);
+        List<Persona> resultado = buscarPorFiltro(filtroPersona1, personas);
         imprimir(resultado);
 
-        //
+        System.out.println("\n\nFiltramos por edad: ");
+        // si quiero filtrar por edad, no necesito más que adaptar el lambda
+        FiltroPersona filtroPersona2 = p -> p.getEdad() == 44;
+        List<Persona> resultado2 = buscarPorFiltro(filtroPersona2, personas);
+        imprimir(resultado2);
+
     }
 
     static void imprimir(List<Persona> lista) {
@@ -38,9 +57,11 @@ public class Main {
         }
     }
 
-    // Mëtodo filtrar por nombre: recibe un nombre y una lista de personas
+    // Mëtodo filtrar por nombre: hemos creado la interfaz FiltroPersona
+    // nos tratamos de ahorrar la clase con un lambda, instanciando la interfaz directamente
+    // ahora en vez de pasar un nombrer le vamos a pasar un filtro
     // devuelve otra lista con las personas que tienen ese nombre
-    static List<Persona> buscarPorNombre(String nombre, List<Persona> listaCompleta) {
+    static List<Persona> buscarPorFiltro(FiltroPersona filtro, List<Persona> listaCompleta) {
         // creamos la lista que vamos a devolver
         List<Persona> listaFiltrada = new ArrayList<>();
         // recorrer la lista completa y, si el nombre coincide, metemos a la persona en la lista filtrada
@@ -48,14 +69,13 @@ public class Main {
         while (it.hasNext()) {
             Persona p = it.next(); // avanzamos una vez el iterador y "cogemos" esa persona
             // si la persona tiene ese nombre. la metemos en la listaFiltrada
-            if (p.getNombre().equals(nombre)) {
+            if (filtro.test(p)) {
                 listaFiltrada.add(p);
             }
         }
         return listaFiltrada;
     }
 
-    // de querer hacerlo así, tendríamos que crear otro método para buscar por apellido
-    // y otro método más si queremos buscar por edad
-    // si queréis completarlo... será una buena práctica
+    // con esta solución nos ahorramos un método para cada criterio, porque el filtro vale para todo
+    // ahora en el main tratamos de instanciar la interfaz directamente -> me crea una anónima y la sustituyo por un lambda (ver el main)
 }
