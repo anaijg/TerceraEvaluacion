@@ -2,6 +2,9 @@ package ejercicios.ejercicio4;
 
 import java.util.function.Predicate;
 
+import static java.lang.Character.isLetter;
+import static java.lang.Character.isUpperCase;
+
 public class MainPredicados {
     public static void main(String[] args) {
         // Define un predicado para comprobar si un entero es múltiplo de 5.
@@ -20,11 +23,17 @@ public class MainPredicados {
 
         // Define un predicado para comprobar si un
         //carácter es una letra y está en mayúscula.
+        Predicate<Character> letraYMayúscula =  c -> isLetter(c) && isUpperCase(c);
+        System.out.println("5. " + letraYMayúscula.test('C'));
 
         // Define un predicado para comprobar si un
         //entero es impar y múltiplo de 7;
+        Predicate<Integer> imparYMúltiploDe7 = n -> n % 2 != 0 && n % 7 == 0;
+        System.out.println("6. " + imparYMúltiploDe7.test(35));
 
 // Define un predicado para comprobar si un
 //entero es impar o múltiplo de 7.
+        Predicate<Integer> imparOMúltiploDe7 = n -> n % 2 != 0 || n % 7 == 0;
+        System.out.println("7. " + imparOMúltiploDe7.test(15));
     }
 }

@@ -6,6 +6,8 @@ public class MainMetodosF {
 
         System.out.println("2. " + f2(4));
 
+        System.out.println("3. " + f3(85));
+
     }
 
     /*
@@ -27,4 +29,7 @@ devuelva su cuadrado.
     Escribe un método que devuelva el 10%
 de un número.
      */
+    static double f3(double n) {
+        return n * 10 / 100;
+    }
 }

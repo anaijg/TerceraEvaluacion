@@ -16,5 +16,7 @@ public class MainFunction {
 
         // Define una función que devuelva el 10% de un
         //número.
+        Function<Double, Double> f3 = n -> n * 10 / 100;
+        System.out.println("3. " + f3.apply(85.0));
     }
 }
