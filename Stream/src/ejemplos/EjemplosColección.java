@@ -3,6 +3,7 @@ package ejemplos;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class EjemplosColección {
@@ -72,5 +73,29 @@ public class EjemplosColección {
         System.out.println(numElementos);
 
 
+        System.out.println("Suma de todos los elementos de la lista: ");
+        // como el resultado final es un único número, lo guardamos en una variable y luego la imprimimos
+        int suma = lista.stream().reduce(0, (acumulator, elemento) -> acumulator + elemento);
+        System.out.println("Suma de todos: " + suma);
+
+        // El ejemplo de la otra página con explicaciones, pero no hacer mucho caso
+/*
+        System.out.println("\nReduce con string");
+        List<String> letters = List.of("A","B","C","D","A","E","A");
+
+        AtomicInteger i = new AtomicInteger();
+        letters.stream()
+                .reduce("", (acumulator, element)-> {
+                    if (element.equalsIgnoreCase("A")) {
+                        i.getAndIncrement();
+                        System.out.println("Dentro del if  "+ acumulator + "(" + i + ")"  + element);
+                        return acumulator+element;
+
+                    }
+                    System.out.println("Fuera del if  "+ acumulator);
+                    return acumulator;
+                });
+
+*/
     }
 }
