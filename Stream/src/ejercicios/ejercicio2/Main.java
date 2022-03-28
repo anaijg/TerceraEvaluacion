@@ -31,12 +31,38 @@ public class Main {
                 .filter(personaje -> personaje.getEdad() <= 90 && personaje.getArma().equals(Personaje.Arma.ESPADA))
                 .forEach(personaje -> System.out.print(personaje));
 //        Filtrar los personajes que no usan espada.
+            // filtraremos los que tienen espada, que es más fácil, y lo que nos dé lo negaremos
+        System.out.println("\nPersonajes sin espada");
+        personajes.stream()
+                .filter(personaje -> !personaje.getArma().equals(Personaje.Arma.ESPADA))
+                .forEach(personaje -> System.out.print(personaje));
 
 //        Muestra los personajes ordenados por orden alfabético.
+        System.out.println("\nPersonajes por orden alfabético: ");
+        // en el sorted le tenemos que indicar por qué criterio queremos ordenar,
+        // igual que vimos con los comparadores
+        personajes.stream()
+                .sorted((p1, p2) -> p1.getNombre().compareTo(p2.getNombre()))
+                .forEach(personaje -> System.out.print(personaje));
 
 //        Muestra los personajes humanos.
+        System.out.println("\nPersonajes humanos");
+        personajes.stream()
+                .filter(personaje -> personaje.isEsHumano())
+                .forEach(personaje -> System.out.print(personaje));
 
 //        Muestra el personaje más viejo.
+        System.out.println("\nPersonaje más viejo:");
+        // queremos obtener la edad mayor, la máxima de todas las edades de la lista
+        Personaje personajeMasViejo = personajes.stream()
+                .max((p1, p2) -> p1.getEdad() - p2.getEdad())
+                .get();
+        System.out.println(personajeMasViejo);
+
+        /* System.out.println(personajeMasViejo = personajes.stream()
+                .max((p1, p2) -> p1.getEdad() - p2.getEdad())
+                .get());
+        */
 
     }
 }
