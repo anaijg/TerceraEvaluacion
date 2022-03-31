@@ -26,7 +26,7 @@ public class EjemploCrearFichero {
             }
         } catch (IOException e) {
             System.out.println("Ha sucedido un error: " + e.getMessage());
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 }

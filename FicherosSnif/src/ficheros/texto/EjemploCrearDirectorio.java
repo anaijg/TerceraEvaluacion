@@ -15,6 +15,23 @@ public class EjemploCrearDirectorio {
 
         // A continuación, creamos el objeto File
         File nuevoDirectorio = new File(ruta + nombre);
-        boolean creado = nuevoDirectorio.mkdir();
+        boolean creado = nuevoDirectorio.mkdir(); // te crea directamente ese directorio en concreto
+        // si puede crear el directorio, en creado se almacenará true
+        if (creado) {
+            System.out.println("El directorio se ha creado correctamente.");
+        } else { // si creado = false es que o ya existe o la ruta está mal
+            System.out.println("El directorio ya existe o no existe la ruta especificada.");
+            if (nuevoDirectorio.exists()) {
+                System.out.println("La carpeta ya existe");
+            } else {
+                // vamos a comprobar si esa ruta existe
+                File comprobarRuta = new  File(ruta);
+                if (!comprobarRuta.exists()) {
+                    System.out.println("La ruta no existe.");
+                } else {
+                    System.out.println("Yo qué sé.");
+                }
+            }
+        }
     }
 }
