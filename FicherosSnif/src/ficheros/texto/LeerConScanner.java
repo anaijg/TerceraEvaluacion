@@ -25,7 +25,7 @@ public class LeerConScanner {
                 System.out.println(lector.nextLine());
             }
             // ahora lo leemos número a número
-            System.out.println("Nú");
+            System.out.println("Número a número");
             lector = new Scanner(f);
             while ((lector.hasNextInt())) {
                 System.out.println(lector.nextInt());
