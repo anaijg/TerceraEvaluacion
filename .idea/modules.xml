@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Ficheros/Ficheros.iml" filepath="$PROJECT_DIR$/Ficheros/Ficheros.iml" />
       <module fileurl="file://$PROJECT_DIR$/FicherosSnif/FicherosSnif.iml" filepath="$PROJECT_DIR$/FicherosSnif/FicherosSnif.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lambda/Lambda.iml" filepath="$PROJECT_DIR$/Lambda/Lambda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Parcial1/Parcial1.iml" filepath="$PROJECT_DIR$/Parcial1/Parcial1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Stream/Stream.iml" filepath="$PROJECT_DIR$/Stream/Stream.iml" />
       <module fileurl="file://$PROJECT_DIR$/TerceraEvaluacion.iml" filepath="$PROJECT_DIR$/TerceraEvaluacion.iml" />
     </modules>
