@@ -1,3 +1,5 @@
+package ejemplos;
+
 import java.sql.*;
 
 public class JDBCEmpresa2 {
