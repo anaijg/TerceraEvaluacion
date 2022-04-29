@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<estudiante>
+    <DNI>66666666B</DNI>
+    <nombre>Carlos</nombre>
+    <apellidos>Nieto</apellidos>
+    <curso>1</curso>
+    <ciclo>DAW</ciclo>
+    <módulos>
+        <módulo>Programación</módulo>
+        <módulo>Bases de Datos</módulo>
+        <módulo>Lenguajes de marcas</módulo>
+    </módulos>
+</estudiante>

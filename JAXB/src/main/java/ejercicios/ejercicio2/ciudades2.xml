@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ciudades>
+    <ciudad>
+        <continente>Europa</continente>
+        <nombre>Madrid</nombre>
+        <pais>España</pais>
+    </ciudad>
+    <ciudad>
+        <continente>América</continente>
+        <nombre>Washington</nombre>
+        <pais>EEUU</pais>
+    </ciudad>
+    <ciudad>
+        <continente>Oceanía</continente>
+        <nombre>Sidney</nombre>
+        <pais>Australia</pais>
+    </ciudad>
+</ciudades>
