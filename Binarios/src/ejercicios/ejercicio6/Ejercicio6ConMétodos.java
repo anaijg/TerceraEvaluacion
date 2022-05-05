@@ -15,28 +15,37 @@ public class Ejercicio6ConMétodos {
     static String ruta = "Binarios\\src\\ejercicios\\ejercicio6\\registros.dat"; // como siempre es el mismo fichero, ponemos la ruta estática para acceder desde toda la clase
 
     public static void main(String[] args) {
-
-
-        // Y ahora esta lista la grabamos en un fichero binario
-
-
-        comprobarFichero();
-
-        escribirRegistro();
-
-        leerFichero();
-
+        // Menú
+        int opción = 0;
+        do {
+            System.out.println("1. Escribir registro\n2. Leer fichero\n0. Salir");
+            opción = sc.nextInt();
+            switch (opción) {
+                case 0: // con el 0 no hacemos nada, que salte al while.. y de ahí fuera del do-while
+                    break;
+                case 1:
+                    escribirRegistro();
+                    break;
+                case 2:
+                    leerFichero(true); // el true es para que simplemente nos muestre los datos
+                    break;
+                default:
+                    System.out.println("Opción incorrecta.");
+            }
+        }while (opción != 0);
     }
 
     private static void escribirRegistro() {
-        // Pedimos la temperatura
 
-        // Creamos un registro
-        Registro r = new Registro(18);
-        System.out.println(r.toString());
+        comprobarFichero(); // Comprobamos si ya existe el fichero; si no existe, lo crea
+        // Pedimos la temperatura
+        System.out.println("Temperatura: ");
+        //int t = sc.nextInt(); si queremos nos saltamos esta línea y según leemos del teclado creamos el registro; ver siguiente línea
+        Registro r = new Registro(sc.nextInt());
+        //System.out.println(r.toString());
 
         // Recupera los registros que tenemos ya escritos
-        List<Registro> lista = new ArrayList<>(); // cambiar esto para que sea leído
+        List<Registro> lista = leerFichero(false); // el false es para que sólo escriba, no muestre los datos
 
         // Añado el registro a la lista
         lista.add(r);
@@ -63,7 +72,7 @@ public class Ejercicio6ConMétodos {
         }
     }
 
-    private static ArrayList<Registro> leerFichero() {
+    private static ArrayList<Registro> leerFichero(boolean mostrarDatos) {
         // Comprobamos si existe para que no nos salte una excepción
         comprobarFichero();
 
@@ -73,7 +82,9 @@ public class Ejercicio6ConMétodos {
             // hemos escrito con writeObject -> readObject; he guardado un ArrayList, pues recupero eso mismo
             fichero = (ArrayList<Registro>) in.readObject(); // leo el contenido -> lo convierto en un ArrayList de Registro y lo guardo en la variable fichero
             // muestro el contenido de la lista recuperada
-            fichero.stream().forEach(System.out::println);
+            if (mostrarDatos) {
+                fichero.stream().forEach(System.out::println);
+            }
         } catch (FileNotFoundException e) {
             System.out.println("Fichero no encontrado o ruta incorrecta.");
             e.printStackTrace();
