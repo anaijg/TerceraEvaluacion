@@ -1,47 +1,37 @@
 package AppUniversidad.interfaz;
 
+import AppUniversidad.dao.AlumnoDAO;
 import AppUniversidad.modelo.Alumno;
 
 import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
-        Alumno a1 = new Alumno(1, "Alba Alonso", "Av. Andalucía, 3", "111111111");
+       Alumno a1 = new Alumno(1, "Alba Alonso", "Av. Andalucía, 3", "111111111");
         //System.out.println(a1);
 
-        // Queremos meter este objeto en la base de datos -> tabla alumno
-        // Conexión
-        String url = "jdbc:sqlite:./JDBC/Universidad/Universidad.db";
-        try (Connection con = DriverManager.getConnection(url)) { // con esta estructura try-with-resources no tengo que cerrar la conexión
-            /*if (con.isValid(5)) {
-                System.out.println("Conexión establecida");
-            }*/
-            // Vamos a insertar el alumno en un registro de la base de datos
-            // los valores en las consultas parametrizadas siempre se ponen como ?
-            String sql = "INSERT INTO alumno VALUES (?, ?, ?, ?);";
-            // creamos la consulta parametrizada
-            PreparedStatement pst = con.prepareStatement(sql);
-            // le concretamos los valores
-            pst.setInt(1, a1.getId());
-            pst.setString(2,a1.getNombre());
-            pst.setString(3,a1.getDireccion());
-            pst.setString(4,a1.getTelefono());
-            // ahora la ejecutamos
-            //int registrosInsertados = pst.executeUpdate();
-            //System.out.println("Se han insertado " + registrosInsertados + " registros.");
+       //Alumno a2 = new Alumno(2,"Benito Blanco", "Calle Bruto, 1", "222222222");
+       // Insertamos el alumno en la base de datos
+        // tenemos que invocar al método create de la clase AlumnoDAO
+        // como es un método estático, lo llamamos a través del nombre de la clase
+        //AlumnoDAO.create(a2);
 
-
-            // Ahora recuperamos los datos
-            String consulta = "SELECT * FROM alumno;";
-            pst = con.prepareStatement(consulta);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + " - " + rs.getString("nombre") + " - " + rs.getString("direccion") + " - " + rs.getString("telefono"));
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        // Recuperamos los datos de los dos alumnos
+        for (int i = 1; i < 3; i++) {
+            Alumno a = AlumnoDAO.read(i);
+            System.out.println(a);
         }
+
+        // Alba Alonso se muda a la calle Mundanza, 3
+        a1.setDireccion("Hoy es viernes y el cuerpo lo sabe, 3");
+        AlumnoDAO.update(a1);
+        // Para ver si se ha modificado en la base de datos después de llamar al método update,
+        // llamamos al método read para esta misma alumna
+        AlumnoDAO.read(1);
+
+        // Vamos a eliminar al id 2 de la base de datos
+        AlumnoDAO.delete(2);
+
 
     }
 }
