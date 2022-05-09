@@ -117,7 +117,26 @@ public class AlumnoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public static int obtenerUltimoId() {
+        Connection con = conectar();
+        String sql = "SELECT MAX(id) FROM alumno;";
+        ResultSet rs = null;
+        int ultimoId = 0;
+        try {
+            Statement st = con.createStatement();
+            rs = st.executeQuery(sql);
+            if (!rs.equals(null)) {
+                // si está vacío no entra aquí y el ultimoId se mantiene en 0
+                ultimoId = rs.getInt(1); // guardamos en ultimoId el contenido de la columna única que nos devuelve el MAX
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error al obtener último id: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return ultimoId;
     }
 
 
