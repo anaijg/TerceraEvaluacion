@@ -6,7 +6,7 @@ import AppUniversidad.modelo.Alumno;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MainMenu {
+public class MainAlumno {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
