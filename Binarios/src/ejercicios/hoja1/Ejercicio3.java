@@ -1,4 +1,4 @@
-package ejercicios;
+package ejercicios.hoja1;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

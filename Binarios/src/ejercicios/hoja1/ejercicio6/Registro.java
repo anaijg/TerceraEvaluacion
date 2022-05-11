@@ -1,11 +1,8 @@
-package ejercicios.ejercicio6;
+package ejercicios.hoja1.ejercicio6;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Locale;
 
 // necesitamos implementar Serializable para poder grabar los objetos de tipo Registro en un fichero binario
 public class Registro implements Serializable {

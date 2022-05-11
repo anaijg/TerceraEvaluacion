@@ -1,4 +1,4 @@
-package ejercicios.ejercicio6;
+package ejercicios.hoja1.ejercicio6;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -45,8 +45,12 @@ public class Ejercicio6ConMétodos {
         //System.out.println(r.toString());
 
         // Recupera los registros que tenemos ya escritos
-        List<Registro> lista = leerFichero(false); // el false es para que sólo escriba, no muestre los datos
+            List<Registro> lista = leerFichero(false); // el false es para que sólo escriba, no muestre los datos
 
+        // para que no me salte la excepción de que la lista es null en caso de que el fichero esté vacío
+        if (lista == null) {
+            lista = new ArrayList<>();
+        }
         // Añado el registro a la lista
         lista.add(r);
 
@@ -79,6 +83,7 @@ public class Ejercicio6ConMétodos {
         // Ahora vamos a leer el fichero y que nos muestre lo que tiene por pantalla
         ArrayList<Registro> fichero = null;
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ruta))) {
+            //
             // hemos escrito con writeObject -> readObject; he guardado un ArrayList, pues recupero eso mismo
             fichero = (ArrayList<Registro>) in.readObject(); // leo el contenido -> lo convierto en un ArrayList de Registro y lo guardo en la variable fichero
             // muestro el contenido de la lista recuperada
@@ -88,6 +93,8 @@ public class Ejercicio6ConMétodos {
         } catch (FileNotFoundException e) {
             System.out.println("Fichero no encontrado o ruta incorrecta.");
             e.printStackTrace();
+        } catch (EOFException eofException) {
+            System.out.println("El fichero no contiene datos.");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

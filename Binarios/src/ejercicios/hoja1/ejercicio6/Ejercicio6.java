@@ -1,4 +1,4 @@
-package ejercicios.ejercicio6;
+package ejercicios.hoja1.ejercicio6;
 
 import java.io.*;
 import java.util.ArrayList;
