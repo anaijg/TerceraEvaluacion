@@ -56,10 +56,7 @@ public class DepartamentoDAO {
             System.out.println("Error al recuperar datos del departamento. " + throwables.getMessage());
             throwables.printStackTrace();
         }
-
-
         return departamento;
     }
-
 
 }
